@@ -19,9 +19,14 @@ namespace TechnolyMulakat.Entities.Concretes
 
         [Required]
         public int ArrivalAirportId { get; set; }
+
+        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
         public DateTime DepartureDate { get; set; }
 
         [DateGreaterThan("DepartureDate")]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
         public DateTime ArrivalDate { get; set; }
 
         [Required]
@@ -42,9 +47,9 @@ namespace TechnolyMulakat.Entities.Concretes
 
         //Navigation Properties
         [ForeignKey(nameof(ArrivalAirportId))]
-        public CL_Airport ArrivalAirport { get; set; }
+        public virtual CL_Airport ArrivalAirport { get; set; }
 
         [ForeignKey(nameof(DepartureAirportId))]
-        public CL_Airport DepartureAirport { get; set; }
+        public virtual CL_Airport DepartureAirport { get; set; }
     }
 }

@@ -12,8 +12,25 @@ namespace TechnolyMulakat.Helpers.Profiles
     {
         public FlightProfile()
         {
-            CreateMap<Flight, FlightListDTO>();
-            CreateMap<Flight, FlightDetailDTO>();
+            CreateMap<Flight, FlightListDTO>()
+                .ForMember(destination => destination.DepartureAirportName, options =>
+                options.MapFrom(source => source.DepartureAirport.Name))
+                .ForMember(destination => destination.ArrivalAirportName, options =>
+                options.MapFrom(source => source.ArrivalAirport.Name))
+                .ForMember(destination => destination.DepartureDate, options =>
+                options.MapFrom(source => source.DepartureDate.ToString("dd-MM-yyyy")))
+                .ForMember(destination => destination.ArrivalDate, options =>
+                options.MapFrom(source => source.ArrivalDate.ToString("dd-MM-yyyy")));
+
+            CreateMap<Flight, FlightDetailDTO>()
+                .ForMember(destination => destination.DepartureAirportName, options =>
+                options.MapFrom(source => source.DepartureAirport.Name))
+                .ForMember(destination => destination.ArrivalAirportName, options =>
+                options.MapFrom(source => source.ArrivalAirport.Name))
+                .ForMember(destination => destination.DepartureDate, options =>
+                options.MapFrom(source => source.DepartureDate.ToString("dd-MM-yyyy")))
+                .ForMember(destination => destination.ArrivalDate, options =>
+                options.MapFrom(source => source.ArrivalDate.ToString("dd-MM-yyyy")));
         }
     }
 }
